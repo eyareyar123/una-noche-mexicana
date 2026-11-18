@@ -21,7 +21,7 @@ export const site = {
   time: "20:00" as string | null,
   endTime: null as string | null,
 
-  locationName: "בCrib של אייר ואבשלום",
+  locationName: "בCrib של שפם",
   /** Also used for the Waze / Google Maps buttons. */
   address: 'האר"י 20',
   /** Free text; line breaks are kept. */
