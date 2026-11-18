@@ -15,7 +15,7 @@ A Hebrew (RTL) invitation site for a private Mexican dinner: date and place, a c
 | Receive RSVPs on my phone | Set `hostWhatsApp` in `src/content/site.ts` (digits only, e.g. `972501234567`) |
 | Keep kitchen notes (recipes, shopping, reminders) | Edit `private/kitchen-notes.md`. This file is **never published**. |
 | See my changes | `npm run dev` → http://localhost:3000 |
-| Publish an update | `npm run build`, then upload the `out` folder again |
+| Publish an update | Commit and `git push`. GitHub rebuilds and republishes the site in about a minute. |
 
 ### Running locally
 
@@ -64,19 +64,28 @@ Set `fontTheme` in `src/content/site.ts`. Every option was checked in the browse
 
 ---
 
-## Publishing for free (when you're ready)
+## Publishing (GitHub Pages, free)
+
+**Live site:** https://eyareyar123.github.io/una-noche-mexicana/
+**Repository:** https://github.com/eyareyar123/una-noche-mexicana
+
+It works the same way as the Moodle assignment tracker: every push to `main` runs `.github/workflows/pages.yml`, which installs, builds (`npm run build`), checks the build (`npm run check`), and publishes `out/` to GitHub Pages.
+
+```bash
+git add -A
+git commit -m "Update the menu"
+git push            # live about a minute later; progress shows under the repo's Actions tab
+```
+
+To try the production build locally first:
 
 ```bash
 npm run build      # creates the out/ folder
 npm run check      # verifies the build (see below)
-npm run preview    # optional: serve out/ at http://localhost:4173
+npm run preview    # serve out/ at http://localhost:4173
 ```
 
-Then pick one of these hosts. All are free for a site like this:
-
-- **Netlify Drop (easiest, no account setup):** go to app.netlify.com/drop and drag the `out` folder onto the page. You get a link to send in WhatsApp. To update, drag the new `out` folder onto your site's *Deploys* page.
-- **Cloudflare Pages:** *Workers & Pages → Create → Pages → Upload assets*, then upload `out`.
-- **GitHub Pages:** push the project to a repository and publish `out` with a Pages workflow. If the repository is public, `private/` is already git-ignored, but double-check before pushing.
+On GitHub the site lives under `/una-noche-mexicana/`. The workflow sets `PAGES_BASE_PATH` for that, and images in `site.ts` get the prefix automatically. Locally the site is at the root.
 
 `npm run check` confirms that:
 - the site exported as Hebrew RTL, with the menu on the page;
@@ -86,7 +95,7 @@ Then pick one of these hosts. All are free for a site like this:
 
 ### What's public
 
-Everything in `src/content/site.ts` is published, including the address and the entry code in `additionalInfo`, so anyone with the link can read it. Only `private/` stays on your computer. The site is marked `noindex`, so search engines shouldn't list it.
+Everything in `src/content/site.ts` is published, including the address, the entry code in `additionalInfo` and your WhatsApp number. Anyone with the link can read it, and so can anyone browsing the **public** GitHub repository. `private/` (kitchen notes) and `data/` are git-ignored and stay on your computer. The site is marked `noindex`, so search engines shouldn't list it.
 
 ---
 
