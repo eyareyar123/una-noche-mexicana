@@ -82,7 +82,7 @@ export function Menu({ menu }: { menu: PublicCategory[] }) {
                             <img
                               src={d.image}
                               alt=""
-                              loading="lazy"
+                              decoding="async"
                               width={150}
                               height={120}
                               className="mb-1 h-[104px] w-[130px] object-contain mix-blend-multiply sm:h-[120px] sm:w-[150px]"
