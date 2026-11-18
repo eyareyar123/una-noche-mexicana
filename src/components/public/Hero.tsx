@@ -1,5 +1,6 @@
 import { DesertBand, Garland, HeroArch, TalaveraBand } from "@/components/decor";
 import { IconCalendar, IconClock, IconPin } from "@/components/icons";
+import { asset } from "@/lib/asset";
 import { formatEventDate, formatEventTime } from "@/lib/format";
 import type { PublicEvent } from "@/lib/types";
 
@@ -48,9 +49,13 @@ export function Hero({ event }: { event: PublicEvent }) {
       <div className="mx-auto max-w-6xl px-5 pt-14 sm:px-8 sm:pt-16">
         <div className="flex items-center justify-between text-cream/75">
           <p className="eyebrow">הזמנה פרטית · ערב בבית</p>
-          <p lang="es" dir="ltr" className="font-display text-sm italic tracking-wide">
-            Jerusalén
-          </p>
+          <span className="flex shrink-0 items-center gap-1.5 sm:gap-2" dir="ltr">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={asset("/safam-logo-light.svg")} alt="" width={40} height={20} className="h-4 w-8 sm:h-5 sm:w-10" />
+            <span className="whitespace-nowrap text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-cream/70 sm:text-[0.68rem] sm:tracking-[0.2em]">
+              Made By Safam
+            </span>
+          </span>
         </div>
 
         <div className="grid items-center gap-8 pb-8 pt-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14 lg:pb-12 lg:pt-8">

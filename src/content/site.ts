@@ -16,7 +16,7 @@ export const site = {
   subtitle: "ערב מקסיקני, טאקוס, דרינקים וחברים",
 
   /** "YYYY-MM-DD", or null to show "ייקבע בקרוב". */
-  date: "2026-11-13" as string | null,
+  date: "2026-11-20" as string | null,
   /** "HH:MM", or null. */
   time: "20:00" as string | null,
   endTime: null as string | null,
