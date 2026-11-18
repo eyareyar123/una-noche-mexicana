@@ -31,10 +31,13 @@ export function Hero({ event }: { event: PublicEvent }) {
   const time = formatEventTime(event.time, event.endTime);
   const place = event.locationName || (event.address ? event.address.split(",")[0] : "");
 
+  // Street address under the place name (only when both are set, so it isn't repeated).
+  const placeSub = event.locationName && event.address ? event.address : null;
+
   const details = [
-    { icon: IconCalendar, label: "מתי", value: date, placeholder: "התאריך ייקבע בקרוב" },
-    { icon: IconClock, label: "שעה", value: time, placeholder: "תעודכן בקרוב" },
-    { icon: IconPin, label: "איפה", value: place || null, placeholder: "יעודכן בקרוב" },
+    { icon: IconCalendar, label: "מתי", value: date, placeholder: "התאריך ייקבע בקרוב", sub: null },
+    { icon: IconClock, label: "שעה", value: time, placeholder: "תעודכן בקרוב", sub: null },
+    { icon: IconPin, label: "איפה", value: place || null, placeholder: "יעודכן בקרוב", sub: placeSub },
   ];
 
   return (
@@ -69,7 +72,7 @@ export function Hero({ event }: { event: PublicEvent }) {
 
             {/* Date · time · place — the first thing a guest needs */}
             <dl className="mt-7 grid w-full max-w-xl grid-cols-3 overflow-hidden rounded-2xl border border-cream/15 bg-burgundy-deep/50 backdrop-blur-sm">
-              {details.map(({ icon: Icon, label, value, placeholder }, i) => (
+              {details.map(({ icon: Icon, label, value, placeholder, sub }, i) => (
                 <div
                   key={label}
                   className={`flex flex-col items-center gap-1 px-2 py-3.5 text-center sm:px-4 sm:py-4 ${
@@ -85,6 +88,7 @@ export function Hero({ event }: { event: PublicEvent }) {
                   >
                     {value ?? placeholder}
                   </dd>
+                  {sub && <dd className="text-[0.82rem] leading-snug text-cream/70 sm:text-sm">{sub}</dd>}
                 </div>
               ))}
             </dl>
